@@ -10,8 +10,8 @@ function LandingPage() {
 
 
     const [Movies, setMovies] = useState([]);
-    const [MainMovieImage, setMainMovieImage] = useState(null)
-    const [CurrentPage, setCurrentPage] = useState(0)
+    const [MainMovieImage, setMainMovieImage] = useState(null);
+    const [CurrentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
