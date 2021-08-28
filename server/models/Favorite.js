@@ -22,6 +22,6 @@ const FavoriteSchema = mongoose.Schema({
 }, {timestamps: true})
 
 
-const Favorite = mongoose.model('Favorite', favoriteSchema);
+const Favorite = mongoose.model('Favorite', FavoriteSchema);
 
 module.exports = { Favorite }

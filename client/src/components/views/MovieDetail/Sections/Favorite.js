@@ -1,7 +1,11 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import Axios from 'axios';
 
 function Favorite(props) {
+
+    const [favoriteNumber, setfavoriteNumber] = useState(0);
+    const [favorited, setfavorited] = useState(false);
+
 
     const movieId = props.movieId;
     const userFrom = props.userFrom
@@ -18,9 +22,21 @@ function Favorite(props) {
         Axios.post('/api/favorite/favoriteNumber', variables)
              .then(response=>{
                  if(response.data.success){
-                    
+                    // console.log(response.data);
+                    setfavoriteNumber(response.data.favoriteNumber);
                  } else {
                      alert('숫자 정보를 가져오지 못했습니다.')
+                 }
+             })
+             
+        Axios.post('/api/favorite/favorited', variables)
+             .then(response=>{
+                 if(response.data.success){
+                    // console.log('favorited',response.data);
+                    setfavorited(response.data.favorited);
+
+                 } else {
+                     alert('favorited 정보를 가져오지 못했습니다.')
                  }
              })
         
@@ -28,7 +44,7 @@ function Favorite(props) {
     }, [])
     return (
         <div>
-            <button>Favorite</button>
+            <button>{favorited ? "Not Favorited": "Add to Favorite"} {favoriteNumber} </button>
         </div>
     )
 }
